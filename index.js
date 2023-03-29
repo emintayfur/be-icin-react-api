@@ -22,7 +22,7 @@ const errorResponse = (message = null) => ({
 });
 
 // 4 saniyelik gecikme
-const initialAppDelay = 400;
+const initialAppDelay = 4000;
 const withDelay =
     (fc, ms = initialAppDelay) =>
         (req, res) => {
