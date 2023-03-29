@@ -17,12 +17,12 @@ const successResponse = (data) => ({
 });
 
 const errorResponse = (message = null) => ({
-    status: true,
+    status: false,
     message,
 });
 
 // 4 saniyelik gecikme
-const initialAppDelay = 4000;
+const initialAppDelay = 400;
 const withDelay =
     (fc, ms = initialAppDelay) =>
         (req, res) => {
@@ -48,6 +48,12 @@ app.post(
             return res
                 .status(400)
                 .json(errorResponse("Lütfen geçerli bir değer gönderin!"));
+        }
+
+        if (todo?.length > 255) {
+            return res
+                .status(400)
+                .json(errorResponse("Lütfen en fazla 255 karakter girin."));
         }
 
         const foundItem = list.find(
